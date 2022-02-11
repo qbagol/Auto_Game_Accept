@@ -13,6 +13,10 @@ You will open webpage inspector in your browaser then switch to network, send on
 ### For Chrome:
 ![Chanel and Authorization ID](https://github.com/qbagol/Auto_Game_Accept/blob/main/images/tutorial2.jpeg?raw=true)
 
+### Warning! I highly recommend to set push notification inactive timeout to the lowest value possible.
+
+![Discord](https://github.com/qbagol/Auto_Game_Accept/blob/main/images/tutorial4.png?raw=true)
+
 ## If u want add new game:
 
 Just screenshot into png file how does your button looks like, and add file name and game name into games wariable. (All button png's have to be in this same folder as script)
