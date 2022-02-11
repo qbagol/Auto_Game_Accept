@@ -13,7 +13,8 @@ You will open webpage inspector in your browaser then switch to network, send on
 ### For Chrome:
 ![Chanel and Authorization ID](https://github.com/qbagol/Auto_Game_Accept/blob/main/images/tutorial2.jpeg?raw=true)
 
-### Warning! I highly recommend to set push notification inactive timeout to the lowest value possible.
+### Warning! I highly recommend to set discord push notification inactive timeout to the lowest value possible.
+Reffering to discord: 'Discord avoids sending push notifications to your mobile device when u are at your computer'
 
 ![Discord](https://github.com/qbagol/Auto_Game_Accept/blob/main/images/tutorial4.png?raw=true)
 
