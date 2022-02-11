@@ -4,39 +4,38 @@ import requests
 import time
 import sys
 
-def AutoAccept():
-    i=0
-    while True:
-        coordinates1=pa.locateCenterOnScreen('lol-accept.png')
-        coordinates2=pa.locateCenterOnScreen('cs-accept.png')
-        if coordinates1!=None:
-            pa.moveTo(coordinates1.x, coordinates1.y)
-            pa.click(coordinates1.x, coordinates1.y)
-            print('Game Automaticly Accepted')
-            return 'League of Legends'
+def ButtonDetect(button_png_file, game_name):
+    coordinates=pa.locateCenterOnScreen(button_png_file)
+    pa.moveTo(coordinates.x, coordinates.y)
+    pa.click(coordinates.x, coordinates.y)
+    print('Game Automaticly Accepted')
+    return game_name  
+    
+def AutoGameAccept():
+    games = (('lol-accept.png', 'League of Legends'), ('cs-accept.png', 'Counter-Strike Global Offensive'))
+    running_time=0
+    status=True
+ 
+    while status:
+        for i in range(len(games)):
+            try:
+                game_id=ButtonDetect(games[i][0], games[i][1])
+                status=False
+                break;
 
-        elif coordinates2!=None:
-            pa.moveTo(coordinates2.x, coordinates2.y)
-            pa.click(coordinates2.x, coordinates2.y)
-            print('Game Automaticly Accepted')
-            return 'Counter-Strike Global Offensive'
+            except OSError:
+                print('Wrong button file, check if it is a PNG and make sure the file name is correct')
+                break;
 
-        elif coordinates1==None and coordinates2==None:
-            if i%4==0:
-                info='Running - no match |'
-            elif i%4==1:
-                info='Running - no match /'
-            elif i%4==2:
-                info='Running - no match -'
-            elif i%4==3:
-                info='Running - no match \\'
-
-            
-            sys.stdout.write('%s\r' % info)
-            sys.stdout.flush()
-            i += 1
-            time.sleep(0.5)   
-
+            except AttributeError:
+                if running_time%5==0:
+                    info= 'Running - no match ' + '     '
+                else:
+                    info= 'Running - no match ' + '.'*(running_time%5)
+                sys.stdout.write('%s\r' % info)
+                running_time += 1
+                time.sleep(0.5) 
+    return game_id
 
 def Discord_bot_push():
     
@@ -52,6 +51,5 @@ def Discord_bot_push():
 
     r=requests.post(url, data=payload, headers=header)
 
-
-game_id = AutoAccept()
+game_id = AutoGameAccept()
 Discord_bot_push()
